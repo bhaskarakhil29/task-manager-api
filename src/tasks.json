@@ -4,13 +4,25 @@
       "id": 1,
       "title": "Groceries",
       "description": "get groceries from super market",
-      "completionStatus": true
+      "completed": true
     },
     {
       "id": 2,
       "title": "Laundry",
       "description": "Do laundry",
-      "completionStatus": false
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "Playing Cricket",
+      "description": "Let's play cricket",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Attending Music Class",
+      "description": "Attend music class and finish assignment",
+      "completed": false
     }
   ]
 }

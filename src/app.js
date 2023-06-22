@@ -1,10 +1,12 @@
+// imports
 const express = require("express");
 const routes = require("express").Router();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const taskDetails = require("./routes/taskDetails");
-
 const app = express();
+
+// uses
 app.use(cors());
 app.use(routes);
 app.use(bodyParser.urlencoded({ extended: false }));
