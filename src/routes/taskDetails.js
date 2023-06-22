@@ -36,7 +36,21 @@ function writePathWrapper(writePath, writedata) {
 
 // get all tasks
 taskRoutes.get("/", (req, res) => {
-  res.status(200).send(taskData);
+  const { completed, sort } = req.query;
+  let isCompleted =
+    completed === undefined || completed.toLowerCase() === "false"
+      ? false
+      : true;
+  let taskDataFiltered = taskData;
+  taskDataFiltered = taskDataFiltered.airtribe.filter(
+    (task) => task.completed == isCompleted
+  );
+  if (sort !== undefined) {
+    taskDataFiltered.sort(
+      (a, b) => new Date(b.createdOn) - new Date(a.createdOn)
+    );
+  }
+  res.status(200).send(taskDataFiltered);
 });
 
 // get a single task by its ID
