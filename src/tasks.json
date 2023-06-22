@@ -4,13 +4,13 @@
       "id": 1,
       "title": "Groceries",
       "description": "get groceries from super market",
-      "flag": "done"
+      "completionStatus": true
     },
     {
       "id": 2,
       "title": "Laundry",
       "description": "Do laundry",
-      "flag": "pending"
+      "completionStatus": false
     }
   ]
 }
