@@ -72,6 +72,7 @@ taskRoutes.post("/", (req, res) => {
   const validateBody = validate(taskPassed);
   if (validateBody && validateHelper.validateUniqueId(taskPassed, taskData)) {
     const tasksModified = taskData;
+    taskPassed.createdOn = Date.now();
     tasksModified.airtribe.push(taskPassed);
     writePathWrapper(writePath, JSON.stringify(tasksModified));
     res.status(201).send(`Task Created Successfully`);
@@ -90,6 +91,7 @@ taskRoutes.put("/:id", (req, res) => {
     (task) => task.id == taskIdPassed
   );
   if (taskIndex !== -1 && validate(taskPassed)) {
+    taskPassed.createdOn = taskDataModified.airtribe[taskIndex].createdOn;
     taskDataModified.airtribe[taskIndex] = taskPassed;
     writePathWrapper(writePath, JSON.stringify(taskDataModified));
     res.status(202).json({ message: `Task Updated Successfully` });
