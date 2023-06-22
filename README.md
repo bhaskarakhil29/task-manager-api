@@ -15,6 +15,8 @@ This project is a simple RESTful API for a task manager application. It provides
 
 Tasks are stored in an in-memory data store (e.g., an array). Each task has the following properties:
 
+## JSON Schema
+
 ```json
 {
   "id": integer,
@@ -25,19 +27,21 @@ Tasks are stored in an in-memory data store (e.g., an array). Each task has the 
 }
 ```
 
-### Retrieve all tasks
+## cURL commands
+
+### 1. Retrieve all tasks
 
 ```
 curl --location "localhost:3000/tasks"
 ```
 
-### Retrieve all completed tasks in sorted manner
+### 2. Retrieve all completed tasks in sorted manner
 
 ```
 curl --location "localhost:3000/tasks?completed=true&sort=1"
 ```
 
-### Retrieve a single task by its ID
+### 3. Retrieve a single task by its ID
 
 ```
 
@@ -45,7 +49,7 @@ curl --location "localhost:3000/tasks/:id"
 
 ```
 
-### Retrieve tasks based on priority level
+### 4. Retrieve tasks based on priority level
 
 ```
 
@@ -53,22 +57,23 @@ curl --location "localhost:3000/tasks/priority/:level"
 
 ```
 
-### Create a new task
+### 5. Create a new task
 
 ```
 
 curl --location 'localhost:3000/tasks' \
 --header 'Content-Type: application/json' \
 --data '{
-"id": "99",
-"title": "Task 99",
-"description": "This is task 99",
-"completed": false
+    "id": 10,
+    "title": "Task 10",
+    "description": "Task 10 Pending",
+    "completed": false,
+    "priority": "low"
 }'
 
 ```
 
-### Delete a task by its ID
+### 6. Delete a task by its ID
 
 ```
 
@@ -76,7 +81,7 @@ curl --location --request DELETE "localhost:3000/tasks/:id"
 
 ```
 
-### Update an existing task by its ID
+### 7. Update an existing task by its ID
 
 ```
 

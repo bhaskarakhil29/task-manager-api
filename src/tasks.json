@@ -8,10 +8,10 @@
       "createdOn": 1687422228
     },
     {
-      "id": 2,
       "title": "Task 2",
-      "description": "Task 2 Pending",
-      "completed": false,
+      "description": "Task 2 ",
+      "completed": true,
+      "priority": "high",
       "createdOn": 1687422231
     },
     {
