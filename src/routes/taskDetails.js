@@ -60,9 +60,44 @@ taskRoutes.post("/", (req, res) => {
     const tasksModified = taskData;
     tasksModified.airtribe.push(taskPassed);
     writePathWrapper(writePath, JSON.stringify(tasksModified));
-    res.status(201).send(`Task created Successfully`);
+    res.status(201).send(`Task Created Successfully`);
   } else {
     res.status(400).send(`Invalid data`);
+  }
+});
+
+//Update an existing task by its ID
+taskRoutes.put("/:id", (req, res) => {
+  const taskIdPassed = req.params.id;
+  const taskPassed = req.body;
+  const writePath = path.join(__dirname, "..", "tasks.json");
+  const taskDataModified = taskData;
+  const taskIndex = taskDataModified.airtribe.findIndex(
+    (task) => task.id == taskIdPassed
+  );
+  if (taskIndex !== -1 && validate(taskPassed)) {
+    taskDataModified.airtribe[taskIndex] = taskPassed;
+    writePathWrapper(writePath, JSON.stringify(taskDataModified));
+    res.status(202).json({ message: `Task Updated Successfully` });
+  } else {
+    res.status(400).send(`Invalid data`);
+  }
+});
+
+// Delete a task by its ID
+taskRoutes.delete("/:id", (req, res) => {
+  const taskIdPassed = req.params.id;
+  const writePath = path.join(__dirname, "..", "tasks.json");
+  const taskDataModified = taskData;
+  const taskIndex = taskDataModified.airtribe.findIndex(
+    (task) => task.id == taskIdPassed
+  );
+  if (taskIndex !== -1) {
+    taskDataModified.airtribe.splice(taskIndex, 1);
+    writePathWrapper(writePath, JSON.stringify(taskDataModified));
+    res.status(202).json({ message: `Task Deleted Successfully` });
+  } else {
+    res.status(400).send(`Given Id is not found`);
   }
 });
 

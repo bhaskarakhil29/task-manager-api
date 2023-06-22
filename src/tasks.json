@@ -17,12 +17,6 @@
       "title": "Playing Cricket",
       "description": "Let's play cricket",
       "completed": false
-    },
-    {
-      "id": 4,
-      "title": "Attending Music Class",
-      "description": "Attend music class and finish assignment",
-      "completed": false
     }
   ]
 }
