@@ -13,9 +13,9 @@ This project is a simple RESTful API for a task manager application. It provides
 
 ## Tasks
 
-Tasks are stored in an in-memory data store (e.g., an array). Each task has the following properties:
+Tasks are stored in an in-memory data store (e.g., an array). Each task has the following properties: Here is the data store [tasks.json](./src/tasks.json)
 
-## JSON Schema
+#### JSON Schema
 
 ```json
 {
