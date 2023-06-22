@@ -21,11 +21,13 @@ const taskSchema = {
     title: { type: "string", minLength: 1 },
     description: { type: "string", minLength: 1 },
     completed: { type: "boolean" },
+    priority: { type: "string", enum: ["low", "medium", "high"] },
   },
   required: ["title", "description", "completed"],
 };
 const validate = ajv.compile(taskSchema);
 
+// utility method to write to fs synchronously
 function writePathWrapper(writePath, writedata) {
   try {
     fs.writeFileSync(writePath, writedata, { encoding: "utf8", flag: "w" });
@@ -63,6 +65,16 @@ taskRoutes.get("/:id", (req, res) => {
   } else {
     res.status(404).send(`Data Not Found`);
   }
+});
+
+// GET retrieve tasks based on priority level
+taskRoutes.get("/priority/:level", (req, res) => {
+  const priorityLevel = req.params.level;
+  const filteredTasks = taskData.airtribe.filter(
+    (task) => task.priority === priorityLevel
+  );
+  if (filteredTasks.length > 0) res.status(200).send(filteredTasks);
+  else res.status(404).send(`No Data Found`);
 });
 
 // Create a new task
